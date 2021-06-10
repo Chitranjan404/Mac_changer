@@ -4,6 +4,7 @@ import subprocess
 import optparse
 
 
+#arguments function
 def get_arguments():
     parser = optparse.OptionParser()
     parser.add_option("-i", "--interface", dest="interface", help="Interface to change its MAC Address")
@@ -16,7 +17,8 @@ def get_arguments():
     else:
         return options
 
-
+    
+#function used for changing mac address
 def change_mac(interface, new_mac):
     print("[+] changing MAC Address for " + interface + " to " + new_mac)
     subprocess.call(["ifconfig", interface, "down"])
@@ -24,5 +26,6 @@ def change_mac(interface, new_mac):
     subprocess.call(["ifconfig", interface, "up"])
 
 
+#main program
 options = get_arguments()
 change_mac(options.interface, options.new_mac)
